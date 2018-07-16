@@ -1,6 +1,6 @@
 #!/bin/bash
 #function:  Install  redis  for centos 7.x_64bit
-#author:21yunwei
+#author:lope
 downloaddir=/usr/local/src
  
 function menu(){
