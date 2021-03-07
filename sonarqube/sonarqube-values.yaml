@@ -1,0 +1,28 @@
+image:
+  tag: 8.5.1-community
+
+service:
+  type: NodePort
+  # Unfortunately the chart does not allow setting of actual nodePort number, so a
+  # patch to the nodePort value after installation is applied.
+
+postgresql:
+  persistence:
+    enabled: false
+
+  # Subchart override, workaround for pull problem: https://stackoverflow.com/a/65235060/3236525
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 11.10.0-debian-10-r53
+
+sonarProperties:
+  sonar.forceAuthentication: false
+
+plugins:
+  install:
+    - 'https://github.com/SonarQubeCommunity/sonar-pmd/releases/download/3.2.1/sonar-pmd-plugin-3.2.1.jar'
+    - 'https://github.com/checkstyle/sonar-checkstyle/releases/download/8.38/checkstyle-sonar-plugin-8.38.jar'
+
+    # Many other plugins can be considered, but where omitted from this scenario as it slows the demonstration
+    # https://docs.sonarqube.org/latest/instance-administration/plugin-version-matrix/
