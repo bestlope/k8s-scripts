@@ -25,3 +25,5 @@ sed -i 's/10Gi/20Gi/g' px-mongo-pvc.yaml
 kubectl -n portworx create secret generic volume-secrets \
   --from-literal=secure-pvc=SuperSecur3Key
 
+## kubectl expose
+kubectl expose deploy redis --port=6379 --type=NodePort

@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /   #new 
+  name: prometheus
+  namespace: monitor
+spec:
+#   tls:
+#   - hosts:
+#     - lope.test
+#     secretName: lope-tls-secret
+  rules:
+  - host: prometheus.lope.test
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: super-earth-kube-prometheu-prometheus
+          servicePort: 9090
+

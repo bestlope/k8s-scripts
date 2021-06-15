@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /   #new 
+  name: dokuwiki
+  namespace: dokuwiki
+spec:
+#   tls:
+#   - hosts:
+#     - lope.test
+#     secretName: lope-tls-secret
+  rules:
+  - host: dokuwiki.lope.test
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: unwieldy-balls-dokuwiki
+          servicePort: 80
+

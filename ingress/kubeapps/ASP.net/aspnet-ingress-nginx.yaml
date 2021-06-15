@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /   #new 
+  name: aspnet
+  namespace: asp
+spec:
+#   tls:
+#   - hosts:
+#     - lope.test
+#     secretName: lope-tls-secret
+  rules:
+  - host: aspnet.lope.test
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: premium-cat-aspnet-core
+          servicePort: 80
+

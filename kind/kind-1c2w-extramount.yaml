@@ -1,0 +1,20 @@
+# three node (two workers) cluster config
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  image: kindest/node:v1.19.1
+  extraMounts:
+  - hostPath: D:\node-space\node01
+    containerPath: /nodespace
+- role: worker
+  image: kindest/node:v1.19.1
+  extraMounts:
+  - hostPath: D:\node-space\node02
+    containerPath: /nodespace
+- role: worker
+  image: kindest/node:v1.19.1
+  # add a mount from /path/to/my/files on the host to /files on the node
+  extraMounts:
+  - hostPath: D:\node-space\node03
+    containerPath: /nodespace
